@@ -1,0 +1,10 @@
+.product .product-item-thumbnail img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/4;
+  object-fit: cover;
+}
+
+.product .product-item-title {
+  font-size: 22px;
+}

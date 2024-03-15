@@ -1,0 +1,62 @@
+:root {
+  --color-one: #F0F0FC;
+  --color-two: #FF589E;
+  --color-three: #8261EE;
+  --color-text-one: #1E1E1E;
+  --color-text-two: #777777;
+
+  --font-family: "Raleway", sans-serif;
+  --font-optical-sizing: auto;
+  --font-weight: 400;
+  --font-style: normal;
+}
+
+a {
+  text-decoration: none !important;
+  color: var(--color-text-one);
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  line-height: 1.5s;
+  font-family: var(--font-family);
+  font-optical-sizing: var(--font-optical-sizing);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+}
+
+::selection {
+  background: var(--color-two);
+  color: #FFF;
+}
+
+.button {
+  padding: 12px 20px;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 22px;
+  font-size: 13px;
+  transition: all 0.3s ease 0s;
+}
+
+a:hover {
+  color: var(--color-text-one);
+}
+
+.button-one {
+  background-color: var(--color-two);
+}
+
+.button-one:hover {
+  background-color: var(--color-three);
+}
+
+.button-two {
+  background-color: var(--color-three);
+}
+
+.button-two:hover {
+  background-color: var(--color-two);
+}
