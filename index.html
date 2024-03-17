@@ -39,10 +39,19 @@
     </div>
 
   </div>
-  <button id="sort-desc" value="sort-desc">Giá giảm dần</button>
-  <button id="sort-asc">Giá tăng dần</button>
-  <button id="sort-default">Mặc định</button>
-  <button id="sort-discount">Giảm giá nhiều nhất</button>
+
+
+  <div id="search">
+    <input type="text" placeholder="Nhập từ khóa tìm kiếm...">
+    <button>Tìm kiếm</button>
+  </div>
+
+  <select id="filter">
+    <option value="sort-default" default>Mặc định</option>
+    <option value="sort-price-desc">Giá giảm dần</option>
+    <option value="sort-price-asc">Giá tăng dần</option>
+    <option value="sort-discount-desc">Giảm giá nhiều nhất</option>
+  </select>
   <div class="container-fluid">
     <h2>Danh sách sản phẩm</h2>
     <div class="row product" id="product">
@@ -50,15 +59,15 @@
 
     </div>
     <div class="pagination-prev">
-      <a href="" id="pagination-prev">
+      <button id="pagination-prev">
         Prev
-      </a>
+      </button>
     </div>
-    <div class="pagination-number">
-      <a href="" id="pagination-number">Trang hiện tại</a>
+    <div class="pagination-number" id="pagination-number">
+
     </div>
-    <div class="pagination-prev">
-      <a href="" id="pagination-prev">Next</a>
+    <div class="pagination-next">
+      <button id="pagination-next">Next</button>
     </div>
   </div>
 

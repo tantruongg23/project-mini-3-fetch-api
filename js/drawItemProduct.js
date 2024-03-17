@@ -1,5 +1,6 @@
 import { fetchApi } from "./api.js";
 
+import { pagiNumber, params } from "./variable.js";
 // GET Products
 export const drawProduct = (url) => {
   fetchApi(url).then((data) => {
@@ -18,12 +19,14 @@ export const drawProduct = (url) => {
           <p class"stock">Còn lại: ${item.stock} sp</p>
           <p class="discount">Giảm giá: ${Math.floor(
             item.discountPercentage
-          )}%</p>
+          )}%  </p>
+          <p>ID sản phẩm: ${item.id}</p>
         </div>
       </div>
       `;
     });
     const divProduct = document.querySelector("#product");
     divProduct.innerHTML = htmls;
+    pagiNumber.innerHTML = `Trang ${params.page}`;
   });
 };

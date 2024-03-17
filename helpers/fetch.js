@@ -38,6 +38,7 @@ import { API_PRODUCT, API_CATEGORY } from "../js/constant.js";
 export let sortDesc = document.querySelector("#sort-desc");
 export let sortAsc = document.querySelector("#sort-asc");
 // console.log(sortDesc.value);
+
 let sortParam = "";
 let url = `${API_PRODUCT}?_sort=${sortParam}`;
 
