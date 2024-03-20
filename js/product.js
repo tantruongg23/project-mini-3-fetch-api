@@ -1,5 +1,3 @@
-import { API_PRODUCT } from "./constant.js";
-
 import { drawProduct } from "./drawItemProduct.js";
 import {
   params,
@@ -8,32 +6,26 @@ import {
   buttonSearch,
   inputSearch,
   filter,
+  category,
 } from "./variable.js";
 
 import { fetchApi } from "./api.js";
+import { API_PRODUCT } from "./constant.js";
 
-// console.log(sortDesc.value);
-let textSearch = "";
-let url = `${API_PRODUCT}?_page=${params.page}&_limit=${params.limit}`;
-drawProduct(url);
+drawProduct();
 
-const changeUrl = () => {
-  if (params.category != "") {
-    url = `${API_PRODUCT}?_page=${params.page}&_limit=${params.limit}&_sort=${params.sort}&_order=${params.order}&q=${textSearch}&category=${params.category}`;
-  } else {
-    url = `${API_PRODUCT}?_page=${params.page}&_limit=${params.limit}&_sort=${params.sort}&_order=${params.order}&q=${textSearch}`;
-  }
-};
-
+// Pagination
 // Kiểm tra đến trang đầu chưa
 pagiPrev.addEventListener("click", () => {
+  pagiNext.classList.remove("disabled");
+
   if (params.page > 1) {
     params.page--;
     // console.log("Vừa nhấn về trang trước");
+    if (params.page == 1) pagiPrev.classList.add("disabled");
   }
   // pagiNumber.innerHTML = `Trang ${params.page}`;
-  changeUrl();
-  drawProduct(url);
+  drawProduct();
 });
 
 // Kiểm tra đến trang cuối chưa
@@ -42,38 +34,37 @@ pagiNext.addEventListener("click", () => {
     .then((data) => {
       const numberOfProducts = data.length;
       const numOfPages = numberOfProducts / params.limit;
+      pagiPrev.classList.remove("disabled");
       if (params.page < numOfPages) {
         params.page++;
-      } else {
-        // console.log("Đã đến trang cuối");
+        if (params.page == numOfPages) pagiNext.classList.add("disabled");
       }
       // console.log(`Đang ở trang ${params.page}`);
     })
     .then(() => {
-      changeUrl();
-      drawProduct(url);
+      drawProduct();
     });
 });
 
-// Tìm kiếm
+// End Pagination
 
-function checkInput() {
-  if (inputSearch.value !== "") {
-    textSearch = inputSearch.value;
-  } else {
-    textSearch = "";
-  }
-  changeUrl();
-  drawProduct(url);
+//Search
+function search() {
+  params.q = inputSearch.value;
+  drawProduct();
 }
-
 // Thay đổi kết quả tìm kiếm theo input nhập vào thời gian thực
 // inputSearch.addEventListener("input", checkInput);
-buttonSearch.addEventListener("click", checkInput);
+buttonSearch.addEventListener("click", search);
+// Enter -> search
+inputSearch.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") search();
+});
+//End Search
 
-// Lọc
-filter.addEventListener("change", () => {
-  const sortValue = filter.value;
+// Filter
+filter.addEventListener("change", (e) => {
+  const sortValue = e.target.value;
   if (sortValue === "sort-price-desc") {
     params.sort = "price";
     params.order = "desc";
@@ -84,9 +75,50 @@ filter.addEventListener("change", () => {
     params.sort = "discountPercentage";
     params.order = "desc";
   } else {
-    params.sort = "id";
-    params.order = "asc";
+    params.sort = "";
+    params.order = "";
   }
-  changeUrl();
-  drawProduct(url);
+
+  drawProduct();
 });
+
+// End Filter
+
+// Display products by category
+function clearActiveFlags() {
+  const activeElements = document.querySelectorAll(".active");
+  activeElements.forEach(function (element) {
+    element.classList.remove("active");
+  });
+}
+//  Hiển thị danh mục theo sản phẩm
+setTimeout(() => {
+  // console.log("Sau  5 giây");
+  const categoryItems = document.querySelectorAll(".category-item");
+
+  // console.log(categoryItems);
+  categoryItems.forEach(function (item) {
+    item.addEventListener("click", function () {
+      const category = this.getAttribute("data-category"); // hpac dung: innerText
+
+      if (!item.classList.contains("active")) {
+        clearActiveFlags(); // Xóa tất cả các cờ active nếu không nhấn lại vào chính nó
+        item.classList.add("active");
+      } else {
+        item.classList.remove("active"); // Nếu nhấn lại vào chính nó, xóa lớp "active"
+      }
+
+      if (item.classList.contains("active")) {
+        params.category = category;
+      } else {
+        params.category = "";
+      }
+      // console.log(params.category);
+      // Vẽ sản phẩm ra màn hình
+
+      drawProduct();
+    });
+  });
+}, 200);
+
+// End Display products by category

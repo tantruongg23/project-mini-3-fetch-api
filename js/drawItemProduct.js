@@ -1,9 +1,16 @@
 import { fetchApi } from "./api.js";
+import { API_PRODUCT } from "./constant.js";
 
 import { pagiNumber, params } from "./variable.js";
 // GET Products
 export const drawProduct = (url) => {
-  fetchApi(url).then((data) => {
+  let category = "";
+  if (params.category != "") {
+    category = `&category=${params.category}`;
+  }
+
+  const api = `${API_PRODUCT}?q=${params.q}&_sort=${params.sort}&_order=${params.order}&_page=${params.page}&_limit=${params.limit}${category}`;
+  fetchApi(api).then((data) => {
     // console.log(data.products);
     let htmls = "";
     data.map((item) => {
@@ -13,14 +20,14 @@ export const drawProduct = (url) => {
         <div class="product-item">
           <div class="product-item-thumbnail">
             <img src="${item.thumbnail}" alt="${item.title}"> 
+            <span class="discount">-${Math.floor(
+              item.discountPercentage
+            )}%  </span>
           </div>
           <h3 class="product-item-title">${item.title}</h3>
-          <p class="price">$${item.price}</p>
-          <p class"stock">Còn lại: ${item.stock} sp</p>
-          <p class="discount">Giảm giá: ${Math.floor(
-            item.discountPercentage
-          )}%  </p>
-          <p>ID sản phẩm: ${item.id}</p>
+          <span class="product-item-price">$${item.price}</span>
+          <span class"product-item-stock">Còn lại: ${item.stock} sp</span>
+        
         </div>
       </div>
       `;

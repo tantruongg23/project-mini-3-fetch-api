@@ -6,8 +6,8 @@ export const drawCategory = (url) => {
     let htmls = "";
     data.forEach((item) => {
       htmls += `
-        <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-          <div class="category-item ">${item}</div>
+        <div class="px-2 col-lg-2 col-md-3 col-sm-4 col-6">
+          <button class="category-item" data-category="${item}">${item}</button>
         </div>
 
       `;

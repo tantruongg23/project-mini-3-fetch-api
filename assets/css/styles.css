@@ -1,10 +1,146 @@
+/* Section one  */
+.section-one .inner-title {
+  text-align: center;
+  font-weight: 600;
+  padding: 20px 0;
+  font-size: 32px;
+}
+
+/*Category  */
+/* Dùng cursor: pointer thay button */
+#category .category-item {
+  width: 100%;
+  height: 80px;
+  background: #daac17;
+  color: #1E1E1E;
+  text-align: center;
+  line-height: 26px;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+}
+
+#category .category-item:hover {
+  background: #bd9205;
+}
+
+#category .category-item.active {
+  background: #bd9205;
+}
+
+/* End Category  */
+/* End Section one  */
+
+/* Section two  */
+.section-two {
+  padding-top: 30px;
+}
+
+.section-two #search input {
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.section-two #search button {
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.section-two #filter {
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* End Section two  */
+/* Section three  */
+.section-three {
+  padding: 50px 0;
+}
+
+.section-three .inner-title {
+  text-align: center;
+  font-weight: 600;
+  padding: 20px 0;
+  font-size: 32px;
+}
+
+/* Product  */
+.section-three .product-item {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+
+.product .product-item-thumbnail {
+  position: relative;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
 .product .product-item-thumbnail img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4/4;
+  aspect-ratio: 1/1;
   object-fit: cover;
+
+}
+
+.product .product-item-thumbnail .discount {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #FFF;
+  border: 1px solid transparent;
+  background: #daac17;
+  border-radius: 5px;
+  padding: 3px;
+  font-weight: 600;
 }
 
 .product .product-item-title {
-  font-size: 22px;
+  font-size: 26px;
+  margin: 0;
+  margin-bottom: 10px;
+
 }
+
+.product .product-item-price {
+  font-size: 28px;
+  color: #cfc547;
+
+}
+
+
+/* End Product  */
+
+/* Pagination  */
+.pagination {
+  display: inline-flex;
+}
+
+.pagination__button {
+  background: orange;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+
+}
+
+.pagination__button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination__number {
+  width: 80px;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+/* End Pagination  */
+/* End Section three  */
