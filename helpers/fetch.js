@@ -4,36 +4,6 @@
 
 import { fetchApi } from "../js/api.js";
 import { API_PRODUCT, API_CATEGORY } from "../js/constant.js";
-// // Fetch API function
-// const fetchApi = (url) => {
-//   const result = fetch(url)
-//     .then(response => response.json())
-//     .then(data => {
-//       return data;
-//     })
-//   return result;
-// }
-
-// fetchApi("https://dummyjson.com/products/categories")
-//   .then(data => console.log(data))
-//  GET category
-// fetch("https://dummyjson.com/products/categories")
-//   .then(response => {
-//     return response.json();
-//   })
-//   .then(data => {
-//     // console.log(data);
-//     let htmls = "";
-//     data.forEach(item => {
-//       htmls += `
-//         <div class="category-item col-lg-2 col-md-3 col-sm-4 col-6">${item}</div>
-//       `
-//     });
-//     const divCategory = document.querySelector("#category");
-//     // console.log(htmls);
-//     divCategory.innerHTML = htmls;
-
-//   });
 
 export let sortDesc = document.querySelector("#sort-desc");
 export let sortAsc = document.querySelector("#sort-asc");
